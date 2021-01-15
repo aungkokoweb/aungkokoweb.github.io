@@ -16,35 +16,66 @@ nav{
   min-height:8vh;
   color:white;
   background:black;
+  padding:0px calc(5vw + 10px);
+}
+.nav::after{
+  content:"";
+  z-index:-1;
+  position:absolute;
+  width:100vw;
+  height:1vh;
+  top:7vh;
+  right:0;
+  border-radius:50%;
+  box-shadow:0px 1px 1px grey,0px 1px 3px grey;
 }
 .nav-logo{
   text-transform:uppercase;
   letter-spacing:5px;
-  margin-right:100px;
+  margin-right:70px;
 }
-.nav-links{
+.nav-list{
   position:absolute;
   top:8vh;
   left:0;
-  width:40%;
+  width:50vw;
   height:92vh;
+  z-index:-2;
   display:flex;
   flex-flow: column wrap;
   align-items:center;
-  justify-content:space-around;
+  justify-content:flex-start;
   transform:translate(-100%);
-  background:red;
+  transition: transform 0.2s ease-in;
+  background:#333333;
 }
-.nav-links-active{
+.nav-list-active{
   transform:translateX(0);
-  transition: transform .3s ease-in;
+  transition: transform 0.4s ease-out;
 }
-.nav-links li{
+.nav-list li{
   list-style:none;
+  width:40vw;
+  opacity:0;
 }
-.nav-links a{
+.nav-list>li:first-child{
+  margin-top:5vw;
+}
+.nav-list a{
   color:white;
   text-decoration:none;
+  display:block;
+  padding:15px 10px;
+}
+@keyframes navLinkFade{
+  from{
+    opacity:0;
+    transform:translate(50px);
+  }
+  to{
+    opacity:1;
+    transform:translate(0px);
+  }
 }
 .nav-toggle{
   cursor:pointer;
@@ -54,7 +85,14 @@ nav{
   height:3px;
   margin:5px;
   background:white;
+  transition: all 0.3s ease;
 }
-.nav-toggle-active{
-
+.nav-toggle-active .line1{
+  transform:rotate(45deg) translate(0px,6px);
+}
+.nav-toggle-active .line2{
+  display:none;
+}
+.nav-toggle-active .line3{
+  transform:rotate(-45deg) translate(0px,-5px);
 }
